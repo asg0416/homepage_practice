@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block contents %}
+
+
+<h1>첫번째 페이지</h1>
+<img src="{% static 'image/다운로드.jpg' %}" />
+{{all_memo}}
+{% for i in all_memo %}
+<h1> {{i.title}} </h1>
+{% if i.pic %}
+<p><img src="{{i.pic.url}}" </p>
+    {%endif%}
+<p> {{i.desc}} </p>
+<p> {{i.created_at}} </p>
+<hr>
+<hr>
+{%endfor%}
+<a href="{% url 'second' %}">두번째 페이지</a>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="mydata" />
+    <input type="submit" value="POST로 제출!" />
+</form>
+
+{% endblock %}
